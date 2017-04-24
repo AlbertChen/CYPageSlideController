@@ -25,6 +25,15 @@
         _layoutStyle = layoutStyle;
         [self layoutButtons];
     }
+    
+    if (layoutStyle == CYPageSlideBarLayoutStyleTite) {
+        self.scrollView.scrollEnabled = NO;
+        self.scrollView.bounces = NO;
+    } else {
+        self.scrollView.scrollEnabled = YES;
+        self.scrollView.bounces = YES;
+        self.scrollView.alwaysBounceHorizontal = YES;
+    }
 }
 
 - (void)setItems:(NSArray<CYPageSlideBarItem *> *)items {
@@ -55,11 +64,14 @@
             self.indicatorView.backgroundColor = selectedItem.selectedTitleColor != nil ? selectedItem.selectedTitleColor : self.tintColor;
             
             if (self.layoutStyle == CYPageSlideBarLayoutStyleInOrder) {
-                CGFloat offsetX = selectedButton.center.x - CGRectGetMidX(self.scrollView.bounds);
-                if (offsetX < 0.0) {
-                    offsetX = 0.0;
-                } else if (offsetX > self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.bounds)) {
-                    offsetX = self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.bounds);
+                CGFloat offsetX = 0.0;
+                if (self.scrollView.contentSize.width > CGRectGetWidth(self.scrollView.bounds)) {
+                    offsetX = selectedButton.center.x - CGRectGetMidX(self.scrollView.bounds);
+                    if (offsetX < 0.0) {
+                        offsetX = 0.0;
+                    } else if (offsetX > self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.bounds)) {
+                        offsetX = self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.bounds);
+                    }
                 }
                 CGPoint contentOffset = self.scrollView.contentOffset;
                 if (contentOffset.x != offsetX) {
@@ -172,7 +184,7 @@
     
     if (self.items.count == 0) return;
     
-    CGFloat offsetX = 0.0;
+    CGFloat offsetX = self.layoutStyle == CYPageSlideBarLayoutStyleTite ? 0.0 : PAGE_SLIDE_BAR_ITEMS_GAP;
     for (int i = 0; i < self.items.count; i++) {
         CYPageSlideBarItem *item = self.items[i];
         CYPageSlideBarButton *button = nil;
@@ -199,12 +211,16 @@
         button.tag = i + 100;
         [self.scrollView addSubview:button];
         
-        offsetX += frame.size.width;
+        offsetX += self.layoutStyle == CYPageSlideBarLayoutStyleTite ? frame.size.width : frame.size.width + PAGE_SLIDE_BAR_ITEMS_GAP;
         
         if ([self.delegate respondsToSelector:@selector(pageSlideBar:didLoadButton:atIndex:)]) {
             [self.delegate pageSlideBar:self didLoadButton:button atIndex:@(i)];
         }
     }
+    
+    CGSize contentSize = self.scrollView.contentSize;
+    contentSize.width = offsetX;
+    self.scrollView.contentSize = contentSize;
     
     [self buttonPressed:nil];
 }

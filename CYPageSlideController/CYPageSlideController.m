@@ -76,10 +76,33 @@
 
 #pragma mark - Lifecycle
 
+- (void)commonInit {
+    _pageSlideBarHeight = PAGE_SLIDE_BAR_HEIGHT;
+    _pageSlideBarLayoutStyle = CYPageSlideBarLayoutStyleTite;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self != nil) {
-        self.pageSlideBarHeight = PAGE_SLIDE_BAR_HEIGHT;
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self != nil) {
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self != nil) {
+        [self commonInit];
     }
     
     return self;
@@ -88,6 +111,7 @@
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers barLayoutStyle:(CYPageSlideBarLayoutStyle)barLayoutStyle {
     self = [self init];
     if (self != nil) {
+        _pageSlideBarLayoutStyle = barLayoutStyle;
         _viewControllers = [viewControllers copy];
     }
     
