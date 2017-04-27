@@ -109,7 +109,7 @@
 }
 
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers barLayoutStyle:(CYPageSlideBarLayoutStyle)barLayoutStyle {
-    self = [self init];
+    self = [self initWithNibName:nil bundle:nil];
     if (self != nil) {
         _pageSlideBarLayoutStyle = barLayoutStyle;
         _viewControllers = [viewControllers copy];
@@ -121,9 +121,14 @@
 #pragma mark - View Lifecycle
 
 - (void)loadView {
-    UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    view.backgroundColor = [UIColor whiteColor];
-    self.view = view;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@"nib"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+    } else {
+        UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        view.backgroundColor = [UIColor whiteColor];
+        self.view = view;
+    }
 }
 
 - (void)viewDidLoad {
