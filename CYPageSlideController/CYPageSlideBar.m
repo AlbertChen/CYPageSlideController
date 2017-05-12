@@ -69,6 +69,7 @@
         NSInteger preSelectedIndex = [self.items indexOfObject:_selectedItem];
         if (preSelectedIndex >= 0 && preSelectedIndex < self.items.count) {
             CYPageSlideBarButton *preSelectedButton = [self.scrollView viewWithTag:preSelectedIndex + 100];
+            [preSelectedButton setTitleColor:_selectedItem.titleColor forState:UIControlStateNormal];
             preSelectedButton.selected = NO;
         }
         
@@ -76,6 +77,7 @@
         NSInteger selectedIndex  = [self.items indexOfObject:selectedItem];
         if (selectedIndex >= 0 && selectedIndex < self.items.count) {
             CYPageSlideBarButton *selectedButton = [self.scrollView viewWithTag:selectedIndex + 100];
+            [selectedButton setTitleColor:selectedItem.selectedTitleColor == nil ? self.tintColor : selectedItem.selectedTitleColor forState:UIControlStateSelected];
             selectedButton.selected = YES;
             
             CGRect frame = self.indicatorView.frame;
@@ -266,6 +268,30 @@
     if ([self.delegate respondsToSelector:@selector(pageSlideBar:didSelectItem:)]) {
         [self.delegate pageSlideBar:self didSelectItem:selectedItem];
     }
+}
+
+#pragma mark - Public Mehtods
+
+- (void)moveToIndex:(NSInteger)index progress:(CGFloat)progress {
+    if ([self.dataSource respondsToSelector:@selector(pageSlideBar:buttonForItem:atIndex:)]) return;
+    
+    CGFloat n_r, n_g, n_b = 0.0;
+    CYPageSlideBarItem *item = self.items[index];
+    [item.titleColor getRed:&n_r green:&n_g blue:&n_b alpha:NULL];
+    CGFloat h_r, h_g, h_b = 0.0;
+    UIColor *selectedTitleColor = item.selectedTitleColor ?: self.tintColor;
+    [selectedTitleColor getRed:&h_r green:&h_g blue:&h_b alpha:NULL];
+    
+    CGFloat offset_r = progress * (h_r - n_r);
+    CGFloat offset_g = progress * (h_g - n_g);
+    CGFloat offset_b = progress * (h_b - n_b);
+    
+    CYPageSlideBarButton *nextButton = [self.scrollView viewWithTag:index + 100];
+    [nextButton setTitleColor:[UIColor colorWithRed:n_r + offset_r green:n_g + offset_g blue:n_b + offset_b alpha:1.0] forState:UIControlStateNormal];
+    
+    NSInteger selectedIndex  = [self.items indexOfObject:self.selectedItem];
+    CYPageSlideBarButton *selectedButton = [self.scrollView viewWithTag:selectedIndex + 100];
+    [selectedButton setTitleColor:[UIColor colorWithRed:h_r - offset_r green:h_g - offset_g blue:h_b - offset_b alpha:1.0] forState:UIControlStateSelected];
 }
 
 @end

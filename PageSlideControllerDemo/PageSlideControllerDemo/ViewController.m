@@ -20,15 +20,27 @@
     [super viewDidLoad];
 }
 
-- (IBAction)buttonPressed:(id)sender {
-    PageViewController *controller1 = [[PageViewController alloc] initWithNibName:nil bundle:nil];
-    controller1.title = @"controller 1";
-//    controller1.pageSlideBarItem = 
-    PageViewController *controller2 = [[PageViewController alloc] initWithNibName:nil bundle:nil];
-    controller2.title = @"controller 2";
+- (IBAction)tileButtonPressed:(id)sender {
+    [self showPageSlideControllerWithStyle:CYPageSlideBarLayoutStyleTite numberOfControllers:3];
+}
+
+- (IBAction)orderButtonPressed:(id)sender {
+    [self showPageSlideControllerWithStyle:CYPageSlideBarLayoutStyleInOrder numberOfControllers:6];
+}
+
+- (void)showPageSlideControllerWithStyle:(CYPageSlideBarLayoutStyle)style numberOfControllers:(NSInteger)numberOfControllers {
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i < numberOfControllers; i++) {
+        PageViewController *controller = [[PageViewController alloc] initWithNibName:nil bundle:nil];
+        controller.title = [NSString stringWithFormat:@"controller %d", i + 1];
+        [viewControllers addObject:controller];
+    }
     
-    CYPageSlideController *slideController = [[CYPageSlideController alloc] initWithViewControllers:@[controller1, controller2] barLayoutStyle:CYPageSlideBarLayoutStyleTite];
-    [self presentViewController:slideController animated:YES completion:NULL];
+    CYPageSlideController *slideController = [[CYPageSlideController alloc] initWithViewControllers:viewControllers barLayoutStyle:style];
+    slideController.title = @"Page Slide Controller";
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:slideController];
+    navController.navigationBar.translucent = NO;
+    [self presentViewController:navController animated:YES completion:NULL];
 }
 
 @end

@@ -203,21 +203,24 @@
         if ([self.delegate respondsToSelector:@selector(pageSlideController:didSelectViewController:)]) {
             [self.delegate pageSlideController:self didSelectViewController:viewController];
         }
-        
-        if (![self.scrollView isDecelerating]) {
-            CGPoint contentOffset = self.scrollView.contentOffset;
-            if (contentOffset.x != selectedIndex * self.view.frame.size.width) {
-                contentOffset.x = selectedIndex * self.view.frame.size.width;
-                [self.scrollView setContentOffset:contentOffset animated:YES];
-            }
-        }
     }
 }
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (![scrollView isDecelerating]) return;
+    if (scrollView.isDecelerating == NO && scrollView.isDragging == NO) return;
+    
+//    if (scrollView.contentOffset.x >= 0.0 && scrollView.contentOffset.x <= self.scrollView.contentSize.width - self.view.frame.size.width) {
+//        NSInteger selectedIndex = [self.pageSlideBar.items indexOfObject:self.pageSlideBar.selectedItem];
+//        CGFloat offset = scrollView.contentOffset.x - (selectedIndex * self.view.frame.size.width);
+//        CGFloat progress = fabsf(offset) / self.view.frame.size.width;
+//        if (offset > 0) {
+//            [self.pageSlideBar moveToIndex:selectedIndex + 1 progress:progress];
+//        } else if (offset < 0) {
+//            [self.pageSlideBar moveToIndex:selectedIndex - 1 progress:progress];
+//        }
+//    }
     
     NSInteger index = scrollView.contentOffset.x / scrollView.frame.size.width;
     CGFloat indexF = scrollView.contentOffset.x / scrollView.frame.size.width;
@@ -231,12 +234,17 @@
 - (void)pageSlideBar:(CYPageSlideBar *)slideBar didSelectItem:(CYPageSlideBarItem *)item {
     NSInteger index = [self.pageSlideBar.items indexOfObject:item];
     [self updateSubviewsWithSelectedIndex:index];
+    
+    CGPoint contentOffset = self.scrollView.contentOffset;
+    if (contentOffset.x != index * self.view.frame.size.width) {
+        contentOffset.x = index * self.view.frame.size.width;
+        [self.scrollView setContentOffset:contentOffset animated:YES];
+    }
 }
 
 @end
 
 static const void * kCYPageSlideBarItem = &kCYPageSlideBarItem;
-//static const void * kCYPageSlideController = &kCYPageSlideController;
 
 @implementation UIViewController (CYPageSlideControllerItem)
 
@@ -253,12 +261,12 @@ static const void * kCYPageSlideBarItem = &kCYPageSlideBarItem;
 //    UIViewController *parentController = nil;
 //    do {
 //        UIViewController *parentController = self.parentViewController;
-//        if ([parentController isKindOfClass:[TabSlideController class]]) {
-//            tabSlideController = (TabSlideController *)parentController;
+//        if ([parentController isKindOfClass:[CYPageSlideController class]]) {
+//            pageSlideController = (CYPageSlideController *)parentController;
 //        }
-//    } while (tabSlideController == nil  && parentController.parentViewController != nil);
+//    } while (pageSlideController == nil  && parentController.parentViewController != nil);
 //    
-//    return tabSlideController;
+//    return pageSlideController;
     
     if ([self.parentViewController isKindOfClass:[CYPageSlideController class]]) {
         pageSlideController = (CYPageSlideController *)self.parentViewController;

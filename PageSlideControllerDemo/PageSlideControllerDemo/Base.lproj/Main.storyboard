@@ -21,18 +21,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3H-P5-bkt">
-                                <rect key="frame" x="113" y="318" width="148" height="30"/>
-                                <state key="normal" title="Show Page Controller"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjK-ZC-4Qm">
+                                <rect key="frame" x="113" y="345.5" width="150" height="30"/>
+                                <state key="normal" title="Order Page Controller"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MFL-2Q-dB9"/>
+                                    <action selector="orderButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ut0-iz-VgT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3H-P5-bkt">
+                                <rect key="frame" x="120" y="290.5" width="135" height="30"/>
+                                <state key="normal" title="Tile Page Controller"/>
+                                <connections>
+                                    <action selector="tileButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jPj-1L-ibn"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="f3H-P5-bkt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1yq-A8-tZm"/>
-                            <constraint firstItem="f3H-P5-bkt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="H9W-G0-23Y"/>
+                            <constraint firstItem="f3H-P5-bkt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-28" id="H9W-G0-23Y"/>
+                            <constraint firstItem="MjK-ZC-4Qm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hHl-nn-Wov"/>
+                            <constraint firstItem="MjK-ZC-4Qm" firstAttribute="top" secondItem="f3H-P5-bkt" secondAttribute="bottom" constant="25" id="kDi-Qs-18N"/>
                         </constraints>
                     </view>
                 </viewController>
