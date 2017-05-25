@@ -17,6 +17,38 @@
 
 #pragma mark - Getters & Setters
 
+- (void)setViewControllers:(NSArray *)viewControllers {
+    _viewControllers = [viewControllers copy];
+    
+    [self updateSubviews];
+    NSUInteger selectedIndex = self.selectedIndex;
+    if (selectedIndex > viewControllers.count) {
+        selectedIndex = 0;
+    }
+    [self updateSubviewsWithSelectedIndex:selectedIndex changeOffset:YES];
+}
+
+- (void)setSelectedViewController:(UIViewController *)selectedViewController {
+    if (selectedViewController == nil) return;
+    self.selectedIndex = [self.viewControllers indexOfObject:selectedViewController];
+}
+
+- (UIViewController *)selectedViewController {
+    UIViewController *selectedViewController = nil;
+    if (self.selectedIndex < self.viewControllers.count) {
+        selectedViewController = self.viewControllers[self.selectedIndex];
+    }
+    
+    return selectedViewController;
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    _selectedIndex = selectedIndex;
+    if (_pageSlideBar.items.count > 0) {
+        [self updateSubviewsWithSelectedIndex:selectedIndex changeOffset:YES];
+    }
+}
+
 - (CYPageSlideBar *)pageSlideBar {
     if (_pageSlideBar == nil) {
         _pageSlideBar = [[CYPageSlideBar alloc] initWithLayoutStyle:self.pageSlideBarLayoutStyle];
@@ -68,15 +100,10 @@
     return _scrollView;
 }
 
-- (void)setViewControllers:(NSArray *)viewControllers {
-    _viewControllers = [viewControllers copy];
-    
-    [self updateSubviews];
-}
-
 #pragma mark - Lifecycle
 
 - (void)commonInit {
+    _selectedIndex = 0;
     _pageSlideBarHeight = PAGE_SLIDE_BAR_HEIGHT;
     _pageSlideBarLayoutStyle = CYPageSlideBarLayoutStyleTite;
 }
@@ -152,6 +179,7 @@
     }
     
     [self updateSubviews];
+    [self updateSubviewsWithSelectedIndex:self.selectedIndex changeOffset:YES];
 }
 
 - (void)updateSubviews {
@@ -184,9 +212,10 @@
     _scrollView.contentSize = contentSize;
 }
 
-- (void)updateSubviewsWithSelectedIndex:(NSInteger)selectedIndex {
+- (void)updateSubviewsWithSelectedIndex:(NSInteger)selectedIndex changeOffset:(BOOL)changeOffset {
     if (selectedIndex < 0 || selectedIndex > self.viewControllers.count) return;
     
+    _selectedIndex = selectedIndex;
     UIViewController *viewController = self.viewControllers[selectedIndex];
     if (self.pageSlideBar.selectedItem != viewController.pageSlideBarItem) {
         if (self.pageSlideBar.selectedItem != nil) {
@@ -204,6 +233,14 @@
             [self.delegate pageSlideController:self didSelectViewController:viewController];
         }
     }
+    
+    if (changeOffset) {
+        CGPoint contentOffset = self.scrollView.contentOffset;
+        if (contentOffset.x != selectedIndex * self.view.frame.size.width) {
+            contentOffset.x = selectedIndex * self.view.frame.size.width;
+            [self.scrollView setContentOffset:contentOffset animated:YES];
+        }
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -212,20 +249,19 @@
     if (scrollView.isDecelerating == NO && scrollView.isDragging == NO) return;
     
 //    if (scrollView.contentOffset.x >= 0.0 && scrollView.contentOffset.x <= self.scrollView.contentSize.width - self.view.frame.size.width) {
-//        NSInteger selectedIndex = [self.pageSlideBar.items indexOfObject:self.pageSlideBar.selectedItem];
-//        CGFloat offset = scrollView.contentOffset.x - (selectedIndex * self.view.frame.size.width);
+//        CGFloat offset = scrollView.contentOffset.x - (self.selectedIndex * self.view.frame.size.width);
 //        CGFloat progress = fabsf(offset) / self.view.frame.size.width;
 //        if (offset > 0) {
-//            [self.pageSlideBar moveToIndex:selectedIndex + 1 progress:progress];
+//            [self.pageSlideBar moveToIndex:self.selectedIndex + 1 progress:progress];
 //        } else if (offset < 0) {
-//            [self.pageSlideBar moveToIndex:selectedIndex - 1 progress:progress];
+//            [self.pageSlideBar moveToIndex:self.selectedIndex - 1 progress:progress];
 //        }
 //    }
     
     NSInteger index = scrollView.contentOffset.x / scrollView.frame.size.width;
     CGFloat indexF = scrollView.contentOffset.x / scrollView.frame.size.width;
     if (fabs(indexF - index) <= 0.1) {
-        [self updateSubviewsWithSelectedIndex:index];
+        [self updateSubviewsWithSelectedIndex:index changeOffset:NO];
     }
 }
 
@@ -233,13 +269,7 @@
 
 - (void)pageSlideBar:(CYPageSlideBar *)slideBar didSelectItem:(CYPageSlideBarItem *)item {
     NSInteger index = [self.pageSlideBar.items indexOfObject:item];
-    [self updateSubviewsWithSelectedIndex:index];
-    
-    CGPoint contentOffset = self.scrollView.contentOffset;
-    if (contentOffset.x != index * self.view.frame.size.width) {
-        contentOffset.x = index * self.view.frame.size.width;
-        [self.scrollView setContentOffset:contentOffset animated:YES];
-    }
+    [self updateSubviewsWithSelectedIndex:index changeOffset:YES];
 }
 
 @end

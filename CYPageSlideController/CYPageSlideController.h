@@ -17,6 +17,9 @@
 
 @property (nonatomic, copy) NSArray *viewControllers;
 
+@property (nonatomic, assign) UIViewController *selectedViewController;
+@property (nonatomic, assign) NSUInteger selectedIndex;
+
 @property (nonatomic, strong) IBOutlet CYPageSlideBar *pageSlideBar;
 @property (nonatomic, assign) CGFloat pageSlideBarHeight;
 @property (nonatomic, assign) CYPageSlideBarLayoutStyle pageSlideBarLayoutStyle;

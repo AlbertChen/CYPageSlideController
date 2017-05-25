@@ -252,8 +252,6 @@
     CGSize contentSize = self.scrollView.contentSize;
     contentSize.width = offsetX + self.accessoryView.frame.size.width;
     self.scrollView.contentSize = contentSize;
-    
-    [self buttonPressed:nil];
 }
 
 - (IBAction)buttonPressed:(id)sender {
