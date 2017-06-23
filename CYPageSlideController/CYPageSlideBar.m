@@ -94,10 +94,12 @@
                     if (selectedButton.center.x < halfWidth) {
                         offsetX = 0.0;
                     } else {
-                        offsetX = selectedButton.center.x - halfWidth;
                         CGFloat maxOffsetX = self.scrollView.contentSize.width - CGRectGetWidth(self.scrollView.bounds);
-                        if (offsetX > maxOffsetX) {
-                            offsetX = maxOffsetX;
+                        if (maxOffsetX < 0.0) {
+                            offsetX = 0.0;
+                        }  else {
+                            offsetX = selectedButton.center.x - halfWidth;
+                            offsetX = MIN(offsetX, maxOffsetX);
                         }
                     }
                 }

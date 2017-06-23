@@ -151,6 +151,7 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@"nib"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+        self.view.frame = [UIScreen mainScreen].bounds;
     } else {
         UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         view.backgroundColor = [UIColor whiteColor];
