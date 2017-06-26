@@ -214,7 +214,7 @@
 }
 
 - (void)updateSubviewsWithSelectedIndex:(NSInteger)selectedIndex changeOffset:(BOOL)changeOffset {
-    if (selectedIndex < 0 || selectedIndex > self.viewControllers.count) return;
+    if (selectedIndex < 0 || selectedIndex >= self.viewControllers.count) return;
     
     _selectedIndex = selectedIndex;
     UIViewController *viewController = self.viewControllers[selectedIndex];
