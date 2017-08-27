@@ -25,7 +25,7 @@
 }
 
 - (IBAction)orderButtonPressed:(id)sender {
-    [self showPageSlideControllerWithStyle:CYPageSlideBarLayoutStyleInOrder numberOfControllers:6];
+    [self showPageSlideControllerWithStyle:CYPageSlideBarLayoutStyleNormal numberOfControllers:6];
 }
 
 - (void)showPageSlideControllerWithStyle:(CYPageSlideBarLayoutStyle)style numberOfControllers:(NSInteger)numberOfControllers {

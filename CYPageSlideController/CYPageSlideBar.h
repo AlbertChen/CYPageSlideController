@@ -15,8 +15,8 @@
 #define PAGE_SLIDE_BAR_ITEMS_GAP    15.0f
 
 typedef NS_ENUM(NSInteger, CYPageSlideBarLayoutStyle) {
-    CYPageSlideBarLayoutStyleTite = 0, // Buttons have the same width
-    CYPageSlideBarLayoutStyleInOrder // Buttons layout in order
+    CYPageSlideBarLayoutStyleNormal = 0, // Buttons layout one by one
+    CYPageSlideBarLayoutStyleTite, // Buttons layout in full screen width
 };
 
 @protocol CYPageSlideBarDataSource, CYPageSlideBarDelegate;

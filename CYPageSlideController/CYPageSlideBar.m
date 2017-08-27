@@ -87,7 +87,7 @@
             self.indicatorView.frame = frame;
             self.indicatorView.backgroundColor = selectedItem.selectedTitleColor != nil ? selectedItem.selectedTitleColor : self.tintColor;
             
-            if (self.layoutStyle == CYPageSlideBarLayoutStyleInOrder) {
+            if (self.layoutStyle == CYPageSlideBarLayoutStyleNormal) {
                 CGFloat offsetX = 0.0;
                 if (self.scrollView.bounds.size.width > 0.0) {
                     CGFloat halfWidth = CGRectGetWidth(self.scrollView.bounds) / 2;
