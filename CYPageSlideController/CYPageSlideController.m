@@ -174,6 +174,10 @@
 - (void)updateSubviews {
     if (_scrollView == nil) return;
     
+    if (@available(iOS 11.0, *)) {
+        _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     for (UIView *view in _scrollView.subviews) {
         [view removeFromSuperview];
     }

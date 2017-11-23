@@ -122,6 +122,10 @@
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.alwaysBounceVertical = NO;
         _scrollView.backgroundColor = [UIColor clearColor];
+        
+        if (@available(iOS 11.0, *)) {
+            _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
     }
     
     return _scrollView;
