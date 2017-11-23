@@ -147,6 +147,18 @@
 
 #pragma mark - View Lifecycle
 
+- (void)loadView {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@"nib"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+        self.view.frame = [UIScreen mainScreen].bounds;
+    } else {
+        UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        view.backgroundColor = [UIColor whiteColor];
+        self.view = view;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -242,12 +254,13 @@
     if (scrollView.isDecelerating == NO && scrollView.isDragging == NO) return;
     
 //    if (scrollView.contentOffset.x >= 0.0 && scrollView.contentOffset.x <= self.scrollView.contentSize.width - self.view.frame.size.width) {
-//        CGFloat offset = scrollView.contentOffset.x - (self.selectedIndex * self.view.frame.size.width);
+//        NSInteger selectedIndex = [self.pageSlideBar.items indexOfObject:self.pageSlideBar.selectedItem];
+//        CGFloat offset = scrollView.contentOffset.x - (selectedIndex * self.view.frame.size.width);
 //        CGFloat progress = fabsf(offset) / self.view.frame.size.width;
 //        if (offset > 0) {
-//            [self.pageSlideBar moveToIndex:self.selectedIndex + 1 progress:progress];
+//            [self.pageSlideBar moveToIndex:selectedIndex + 1 progress:progress];
 //        } else if (offset < 0) {
-//            [self.pageSlideBar moveToIndex:self.selectedIndex - 1 progress:progress];
+//            [self.pageSlideBar moveToIndex:selectedIndex - 1 progress:progress];
 //        }
 //    }
     

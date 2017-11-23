@@ -28,6 +28,8 @@
 
 @property (nonatomic, weak) id<CYPageSlideControllerDelegate> delegate;
 
+- (void)updateSubviewsWithSelectedIndex:(NSInteger)selectedIndex changeOffset:(BOOL)changeOffset;
+
 @end
 
 @protocol CYPageSlideControllerDelegate <NSObject>
