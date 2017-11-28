@@ -40,8 +40,8 @@ typedef NS_ENUM(NSInteger, CYPageSlideBarLayoutStyle) {
 @property (nonatomic, copy) NSArray<CYPageSlideBarItem *> *items;
 @property (nonatomic, weak) CYPageSlideBarItem *selectedItem;
 
-@property (nonatomic, weak) id<CYPageSlideBarDataSource> dataSource;
-@property (nonatomic, weak) id<CYPageSlideBarDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<CYPageSlideBarDataSource> dataSource;
+@property (nonatomic, weak) IBOutlet id<CYPageSlideBarDelegate> delegate;
 
 - (void)moveToIndex:(NSInteger)index progress:(CGFloat)progress;
 
