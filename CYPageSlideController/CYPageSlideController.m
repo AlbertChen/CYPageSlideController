@@ -86,9 +86,9 @@
     }
 }
 
-- (UIScrollView *)scrollView {
+- (CYPageScrollView *)scrollView {
     if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+        _scrollView = [[CYPageScrollView alloc] initWithFrame:CGRectZero];
         _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;

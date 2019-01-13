@@ -10,7 +10,7 @@
 
 @interface CYPageSlideBar ()
 
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong, readwrite) UIScrollView *scrollView;
 @property (nonatomic, strong, readwrite) UIView *indicatorView;
 @property (nonatomic, strong, readwrite) UIView *seperatorView;
 
@@ -20,10 +20,20 @@
 
 #pragma mark - Getters & Setters
 
+- (void)setFrame:(CGRect)frame {
+    CGRect originalFrame = self.frame;
+    [super setFrame:frame];
+    
+    if (!CGSizeEqualToSize(frame.size, originalFrame.size)) {
+        [self reloadSubviews];
+    }
+}
+
 - (void)setLayoutStyle:(CYPageSlideBarLayoutStyle)layoutStyle {
     if (_layoutStyle != layoutStyle) {
         _layoutStyle = layoutStyle;
         [self layoutButtons];
+        [self setSelectedItem:_selectedItem alwaysReset:YES];
     }
     
     if (layoutStyle == CYPageSlideBarLayoutStyleTite) {
@@ -65,27 +75,33 @@
 }
 
 - (void)setSelectedItem:(CYPageSlideBarItem *)selectedItem {
-    if (_selectedItem != selectedItem) {
+    [self setSelectedItem:selectedItem alwaysReset:NO];
+}
+
+- (void)setSelectedItem:(CYPageSlideBarItem *)selectedItem alwaysReset:(BOOL)alwaysReset {
+    if (_selectedItem != selectedItem || alwaysReset) {
         NSInteger preSelectedIndex = [self.items indexOfObject:_selectedItem];
         if (preSelectedIndex >= 0 && preSelectedIndex < self.items.count) {
             CYPageSlideBarButton *preSelectedButton = [self.scrollView viewWithTag:preSelectedIndex + 100];
-            [preSelectedButton setTitleColor:_selectedItem.titleColor forState:UIControlStateNormal];
             preSelectedButton.selected = NO;
+            preSelectedButton.titleLabel.font = self.titleFont;
+            [preSelectedButton setTitleColor:_selectedItem.titleColor forState:UIControlStateNormal];
         }
         
         _selectedItem = selectedItem;
         NSInteger selectedIndex  = [self.items indexOfObject:selectedItem];
         if (selectedIndex >= 0 && selectedIndex < self.items.count) {
             CYPageSlideBarButton *selectedButton = [self.scrollView viewWithTag:selectedIndex + 100];
-            [selectedButton setTitleColor:selectedItem.selectedTitleColor == nil ? self.tintColor : selectedItem.selectedTitleColor forState:UIControlStateSelected];
             selectedButton.selected = YES;
+            selectedButton.titleLabel.font = self.selectedTitleFont ?: self.titleFont;
+            [selectedButton setTitleColor:selectedItem.selectedTitleColor ?: self.tintColor forState:UIControlStateSelected];
             
             CGRect frame = self.indicatorView.frame;
             frame.origin.x = selectedButton.frame.origin.x;
             frame.origin.y = selectedButton.frame.size.height - frame.size.height;
             frame.size.width = selectedButton.frame.size.width;
             self.indicatorView.frame = frame;
-            self.indicatorView.backgroundColor = selectedItem.selectedTitleColor != nil ? selectedItem.selectedTitleColor : self.tintColor;
+//            self.indicatorView.backgroundColor = selectedItem.selectedTitleColor ?: self.tintColor;
             
             if (self.layoutStyle == CYPageSlideBarLayoutStyleNormal) {
                 CGFloat offsetX = 0.0;
@@ -157,8 +173,27 @@
 
 - (void)setIndicatorViewHeight:(CGFloat)indicatorViewHeight {
     CGRect frame = self.indicatorView.frame;
+    frame.origin.y -= indicatorViewHeight - frame.size.height;
     frame.size.height = indicatorViewHeight;
     self.indicatorView.frame = frame;
+}
+
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont;
+    
+    for (UIView *view in self.scrollView.subviews) {
+        if ([view isKindOfClass:[CYPageSlideBarButton class]]) {
+            CYPageSlideBarButton *button = (CYPageSlideBarButton *)view;
+            if (!button.selected || self.selectedTitleFont == nil) {
+                button.titleLabel.font = titleFont;
+            }
+        }
+    }
+}
+
+- (void)setSelectedTitleFont:(UIFont *)selectedTitleFont {
+    _selectedTitleFont = selectedTitleFont;
+    [self setSelectedItem:self.selectedItem alwaysReset:YES];
 }
 
 #pragma mark - Lifecycle
@@ -188,6 +223,7 @@
 }
 
 - (void)commonInit {
+    self.titleFont = PAGE_SLIDE_BAR_TITLE_FONT;
     self.tintColor = PAGE_SLIDE_BAR_TINT_COLOR;
     self.backgroundColor = [UIColor whiteColor];
     
@@ -229,11 +265,9 @@
         } else {
             button = [CYPageSlideBarButton buttonWithType:UIButtonTypeCustom item:item];
             button.backgroundColor = [UIColor clearColor];
-            if (self.titleFont != nil) {
-                button.titleLabel.font = self.titleFont;
-            }
+            button.titleLabel.font = self.titleFont;
             [button setTitleColor:item.titleColor forState:UIControlStateNormal];
-            [button setTitleColor:item.selectedTitleColor == nil ? self.tintColor : item.selectedTitleColor forState:UIControlStateSelected];
+            [button setTitleColor:item.selectedTitleColor ?: self.tintColor forState:UIControlStateSelected];
         }
         [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -275,6 +309,11 @@
 }
 
 #pragma mark - Public Mehtods
+
+- (void)reloadSubviews {
+    [self layoutButtons];
+    [self setSelectedItem:self.selectedItem alwaysReset:YES];
+}
 
 - (void)moveToIndex:(NSInteger)index progress:(CGFloat)progress {
     if ([self.dataSource respondsToSelector:@selector(pageSlideBar:buttonForItem:atIndex:)]) return;

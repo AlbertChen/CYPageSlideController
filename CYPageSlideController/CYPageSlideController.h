@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CYPageSlideBar.h"
+#import "CYPageScrollView.h"
 
 @protocol CYPageSlideControllerDelegate;
 
@@ -24,7 +25,7 @@
 @property (nonatomic, assign) CGFloat pageSlideBarHeight;
 @property (nonatomic, assign) CYPageSlideBarLayoutStyle pageSlideBarLayoutStyle;
 
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet CYPageScrollView *scrollView;
 
 @property (nonatomic, weak) id<CYPageSlideControllerDelegate> delegate;
 
