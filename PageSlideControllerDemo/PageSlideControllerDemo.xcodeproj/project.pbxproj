@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DE1B8D951EAD0D9D00F69387 /* CYPageSlideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1B8D8E1EAD0D9D00F69387 /* CYPageSlideBar.m */; };
-		DE1B8D961EAD0D9D00F69387 /* CYPageSlideBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1B8D901EAD0D9D00F69387 /* CYPageSlideBarButton.m */; };
-		DE1B8D971EAD0D9D00F69387 /* CYPageSlideBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1B8D921EAD0D9D00F69387 /* CYPageSlideBarItem.m */; };
-		DE1B8D981EAD0D9D00F69387 /* CYPageSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1B8D941EAD0D9D00F69387 /* CYPageSlideController.m */; };
+		DAD2D03D2DBFE8808952ACC4 /* Pods_PageSlideControllerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969A835501B913D058482066 /* Pods_PageSlideControllerDemo.framework */; };
 		DE5C42251E03959800722013 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5C420F1E03959800722013 /* AppDelegate.m */; };
 		DE5C42261E03959800722013 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE5C42101E03959800722013 /* Assets.xcassets */; };
 		DE5C42271E03959800722013 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE5C42111E03959800722013 /* LaunchScreen.storyboard */; };
@@ -19,18 +16,12 @@
 		DE5C422F1E03959800722013 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5C42211E03959800722013 /* PageViewController.m */; };
 		DE5C42301E03959800722013 /* PageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE5C42221E03959800722013 /* PageViewController.xib */; };
 		DE5C42311E03959800722013 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5C42241E03959800722013 /* ViewController.m */; };
-		DEEAAD4021EB7F9B00788041 /* CYPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEEAAD3E21EB7F9A00788041 /* CYPageScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DE1B8D8D1EAD0D9D00F69387 /* CYPageSlideBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CYPageSlideBar.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		DE1B8D8E1EAD0D9D00F69387 /* CYPageSlideBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CYPageSlideBar.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DE1B8D8F1EAD0D9D00F69387 /* CYPageSlideBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPageSlideBarButton.h; sourceTree = "<group>"; };
-		DE1B8D901EAD0D9D00F69387 /* CYPageSlideBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPageSlideBarButton.m; sourceTree = "<group>"; };
-		DE1B8D911EAD0D9D00F69387 /* CYPageSlideBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPageSlideBarItem.h; sourceTree = "<group>"; };
-		DE1B8D921EAD0D9D00F69387 /* CYPageSlideBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPageSlideBarItem.m; sourceTree = "<group>"; };
-		DE1B8D931EAD0D9D00F69387 /* CYPageSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPageSlideController.h; sourceTree = "<group>"; };
-		DE1B8D941EAD0D9D00F69387 /* CYPageSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPageSlideController.m; sourceTree = "<group>"; };
+		60673B25755F5DBA1EE8E76E /* Pods-PageSlideControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageSlideControllerDemo.debug.xcconfig"; path = "Target Support Files/Pods-PageSlideControllerDemo/Pods-PageSlideControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		969A835501B913D058482066 /* Pods_PageSlideControllerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PageSlideControllerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA55195EDC4CA9BFA25A6772 /* Pods-PageSlideControllerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageSlideControllerDemo.release.xcconfig"; path = "Target Support Files/Pods-PageSlideControllerDemo/Pods-PageSlideControllerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		DE5C420E1E03959800722013 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DE5C420F1E03959800722013 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DE5C42101E03959800722013 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,8 +35,6 @@
 		DE5C42231E03959800722013 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DE5C42241E03959800722013 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DECE60511E01470100A49843 /* PageSlideControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PageSlideControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DEEAAD3E21EB7F9A00788041 /* CYPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPageScrollView.m; sourceTree = "<group>"; };
-		DEEAAD3F21EB7F9A00788041 /* CYPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPageScrollView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,34 +42,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAD2D03D2DBFE8808952ACC4 /* Pods_PageSlideControllerDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DE1B8D8C1EAD0D9D00F69387 /* CYPageSlideController */ = {
+		8F0DCB717C8F42CAB57D6F00 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DEEAAD3F21EB7F9A00788041 /* CYPageScrollView.h */,
-				DEEAAD3E21EB7F9A00788041 /* CYPageScrollView.m */,
-				DE1B8D8D1EAD0D9D00F69387 /* CYPageSlideBar.h */,
-				DE1B8D8E1EAD0D9D00F69387 /* CYPageSlideBar.m */,
-				DE1B8D8F1EAD0D9D00F69387 /* CYPageSlideBarButton.h */,
-				DE1B8D901EAD0D9D00F69387 /* CYPageSlideBarButton.m */,
-				DE1B8D911EAD0D9D00F69387 /* CYPageSlideBarItem.h */,
-				DE1B8D921EAD0D9D00F69387 /* CYPageSlideBarItem.m */,
-				DE1B8D931EAD0D9D00F69387 /* CYPageSlideController.h */,
-				DE1B8D941EAD0D9D00F69387 /* CYPageSlideController.m */,
+				60673B25755F5DBA1EE8E76E /* Pods-PageSlideControllerDemo.debug.xcconfig */,
+				AA55195EDC4CA9BFA25A6772 /* Pods-PageSlideControllerDemo.release.xcconfig */,
 			);
-			name = CYPageSlideController;
-			path = ../../CYPageSlideController;
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		DE5C420D1E03959800722013 /* PageSlideControllerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				DE1B8D8C1EAD0D9D00F69387 /* CYPageSlideController */,
 				DE5C420E1E03959800722013 /* AppDelegate.h */,
 				DE5C420F1E03959800722013 /* AppDelegate.m */,
 				DE5C42231E03959800722013 /* ViewController.h */,
@@ -110,6 +91,8 @@
 			children = (
 				DE5C420D1E03959800722013 /* PageSlideControllerDemo */,
 				DECE60521E01470100A49843 /* Products */,
+				8F0DCB717C8F42CAB57D6F00 /* Pods */,
+				ECBCF58829C15358674763E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +104,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		ECBCF58829C15358674763E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				969A835501B913D058482066 /* Pods_PageSlideControllerDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,9 +119,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DECE607E1E01470200A49843 /* Build configuration list for PBXNativeTarget "PageSlideControllerDemo" */;
 			buildPhases = (
+				995BFBF689D1E7E5D36CB95F /* [CP] Check Pods Manifest.lock */,
 				DECE604D1E01470100A49843 /* Sources */,
 				DECE604E1E01470100A49843 /* Frameworks */,
 				DECE604F1E01470100A49843 /* Resources */,
+				B045FA850648A67C75899AAD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,6 +155,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -189,18 +183,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		995BFBF689D1E7E5D36CB95F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PageSlideControllerDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B045FA850648A67C75899AAD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PageSlideControllerDemo/Pods-PageSlideControllerDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CYPageSlideController/CYPageSlideController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CYPageSlideController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PageSlideControllerDemo/Pods-PageSlideControllerDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DECE604D1E01470100A49843 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEEAAD4021EB7F9B00788041 /* CYPageScrollView.m in Sources */,
-				DE1B8D981EAD0D9D00F69387 /* CYPageSlideController.m in Sources */,
-				DE1B8D971EAD0D9D00F69387 /* CYPageSlideBarItem.m in Sources */,
-				DE1B8D961EAD0D9D00F69387 /* CYPageSlideBarButton.m in Sources */,
 				DE5C422A1E03959800722013 /* main.m in Sources */,
 				DE5C42311E03959800722013 /* ViewController.m in Sources */,
-				DE1B8D951EAD0D9D00F69387 /* CYPageSlideBar.m in Sources */,
 				DE5C42251E03959800722013 /* AppDelegate.m in Sources */,
 				DE5C422F1E03959800722013 /* PageViewController.m in Sources */,
 			);
@@ -336,6 +368,7 @@
 		};
 		DECE607F1E01470200A49843 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60673B25755F5DBA1EE8E76E /* Pods-PageSlideControllerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZF6TVZV5SQ;
@@ -349,6 +382,7 @@
 		};
 		DECE60801E01470200A49843 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA55195EDC4CA9BFA25A6772 /* Pods-PageSlideControllerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZF6TVZV5SQ;

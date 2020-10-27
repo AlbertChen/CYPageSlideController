@@ -1,0 +1,16 @@
+PODS:
+  - CYPageSlideController (0.0.1)
+
+DEPENDENCIES:
+  - CYPageSlideController (from `../`)
+
+EXTERNAL SOURCES:
+  CYPageSlideController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CYPageSlideController: 32ced0e0798a8a01d0745a97e1522d79b4dea575
+
+PODFILE CHECKSUM: e5bedb728cab57cffc0644723fe70b948fd172ab
+
+COCOAPODS: 1.9.1
