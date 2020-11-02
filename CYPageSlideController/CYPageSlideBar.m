@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong, readwrite) UIScrollView *scrollView;
 @property (nonatomic, strong, readwrite) UIView *indicatorView;
-@property (nonatomic, strong, readwrite) UIView *seperatorView;
+@property (nonatomic, strong, readwrite) UIView *separatorView;
 
 @end
 
@@ -147,14 +147,14 @@
     return _scrollView;
 }
 
-- (UIView *)seperatorView {
-    if (_seperatorView == nil) {
-        _seperatorView = [[UIView alloc] initWithFrame:CGRectZero];
-        _seperatorView.translatesAutoresizingMaskIntoConstraints = NO;
-        _seperatorView.backgroundColor  = [UIColor colorWithRed:238.0/255 green:238.0/255 blue:238.0/255 alpha:1.0];
+- (UIView *)separatorView {
+    if (_separatorView == nil) {
+        _separatorView = [[UIView alloc] initWithFrame:CGRectZero];
+        _separatorView.translatesAutoresizingMaskIntoConstraints = NO;
+        _separatorView.backgroundColor  = [UIColor colorWithRed:238.0/255 green:238.0/255 blue:238.0/255 alpha:1.0];
     }
     
-    return _seperatorView;
+    return _separatorView;
 }
 
 - (UIView *)indicatorView {
@@ -228,7 +228,7 @@
     self.backgroundColor = [UIColor whiteColor];
     
     [self addSubview:self.scrollView];
-    [self addSubview:self.seperatorView];
+    [self addSubview:self.separatorView];
     [self.scrollView addSubview:self.indicatorView];
     
     [self setupLayoutConstraints];
@@ -236,13 +236,13 @@
 
 - (void)setupLayoutConstraints {
     NSDictionary *views = @{ @"scrollView": self.scrollView,
-                             @"seperatorView": self.seperatorView,
+                             @"separatorView": self.separatorView,
                              @"indicatorView": self.indicatorView };
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[seperatorView]|" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[seperatorView(0.5)]|" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[separatorView]|" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[separatorView(0.5)]|" options:0 metrics:nil views:views]];
 }
 
 #pragma mark -

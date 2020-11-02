@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, CYPageSlideBarLayoutStyle) {
 @property (nonatomic, strong) UIView *accessoryView;
 
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
-@property (nonatomic, strong, readonly) UIView *seperatorView;
+@property (nonatomic, strong, readonly) UIView *separatorView;
 
 @property (nonatomic, strong, readonly) UIView *indicatorView;
 @property (nonatomic, assign) CGFloat indicatorViewHeight;
